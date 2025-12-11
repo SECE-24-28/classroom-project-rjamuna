@@ -1,0 +1,18 @@
+import { Link } from "react-router-dom";
+
+function Navbar() {
+  return (
+    <>
+      <nav>
+        <ul>
+          <Link to="/"><li>Home</li></Link>
+         <Link to="/about"><li>About</li></Link>
+          <Link to="/contact"><li>contact</li></Link>
+          <Link to="/learningReact"><li>LearningReact</li></Link>
+        </ul>
+      </nav>
+    </>
+  );
+}
+
+export default Navbar;
