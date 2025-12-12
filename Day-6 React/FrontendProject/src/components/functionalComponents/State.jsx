@@ -6,7 +6,7 @@ const State = () => {
   function setState() {
     updateState("Updated State component");
   }
-
+  
   return (
     <div>
       <p>This is {stateComponent}</p>
