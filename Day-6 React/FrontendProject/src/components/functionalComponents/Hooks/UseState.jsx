@@ -19,7 +19,7 @@ const Usestate = () => {
 
   return (
     <div>
-      <h2>Usestate Hook Example</h2>
+      <h1>Usestate Hook Example</h1>
 
       {/* SUB */}
       <button onClick={subb}>-</button>

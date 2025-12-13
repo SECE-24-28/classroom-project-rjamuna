@@ -5,7 +5,6 @@ const slowFnuc = (num) => {
     for (let i = 0; i <= 1000000; i++) {}
     return num * 2;
 }
-
 const UseMemo = () => {
     const [number, setNumber] = useState(0);
     const [theme, setTheme] = useState(true);
@@ -20,7 +19,6 @@ const UseMemo = () => {
     }, [number]);
     
     slowFnuc(number);
-
     return (
         <div style={styling}> 
             <h3>UseMemo Example</h3>

@@ -8,6 +8,7 @@ import UseEffectAPI from "./Hooks/UseEffectAPI"
 import FakeImageAPI from "./Hooks/FakeImageAPI";  
 import UseRef from "./Hooks/UseRef";
 import UseMemo from "./Hooks/UseMemo";
+import UseCallback from "./Hooks/UseCallback";
 const LearningReact = () => {
   return (
     <div>
@@ -21,13 +22,22 @@ const LearningReact = () => {
           <ul>
 
           <li><UseState/></li>
+          <hr></hr>
           <li><UseEffect/></li>
+          <hr></hr>
           <li><UseEffectAPI/></li>
+          <hr></hr>
           <li><FakeImageAPI/></li>
+          <hr></hr>
           <li><UseRef/></li>
+          <hr></hr>
           <li><UseMemo/></li>
+          <hr></hr>
+          <li><UseCallback/></li>
           </ul>
+          <hr></hr>
           <li><State/></li>
+          <hr></hr>
           <li><Events /></li>
           
           
