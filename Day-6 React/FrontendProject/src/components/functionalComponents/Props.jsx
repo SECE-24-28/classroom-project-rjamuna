@@ -1,4 +1,9 @@
-const Props = (props) => {
+const Props = () => {
+  const hi = "Welcome Props";
+  const grade = 12;
+  const age = 18;
+  const img = "/vite.svg"; // just use root-relative path
+
   return (
     <div>
       <h1>This is props component</h1>
@@ -6,9 +11,9 @@ const Props = (props) => {
         <li>
           Props are:
           <ul>
-            <li>{props.h1}</li>
-            <li>I completed my {props.grade} grade by the age of {props.age} years</li>
-            <li><img src={props.img} alt="Example" width="100" /></li>
+            <li>{hi}</li>
+            <li>I completed my {grade} grade by the age of {age} years</li>
+            <li><img src={img} alt="Example" width="100" /></li>
           </ul>
         </li>
       </ol>

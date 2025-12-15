@@ -1,18 +1,91 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../css/Navbar.css"; 
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
   return (
-    <>
-      <nav>
-        <ul>
-          <Link to="/"><li>Home</li></Link>
-         <Link to="/about"><li>About</li></Link>
-          <Link to="/contact"><li>contact</li></Link>
-          <Link to="/learningReact"><li>LearningReact</li></Link>
-          <Link to="/login"><li>Login</li></Link>
-        </ul>
-      </nav>
-    </>
+    <nav className="navbar">
+      <ul className="nav-list">
+        <li><button onClick={() => navigate("/")}>Home</button></li>
+        <li><button onClick={() => navigate("/about")}>About</button></li>
+        <li><button onClick={() => navigate("/contact")}>Contact</button></li>
+        <li className="dropdown">
+          <button
+            className="nav-link dropdown-btn"
+            onClick={() => setOpen(!open)}
+          >
+            Learning React ▾
+          </button>
+
+          {open && (
+            <ul className="dropdown-menu">
+              {/* Sections */}
+              <li>
+                <button onClick={() => navigate("/learningReact/props")}>
+                  Props
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/task")}>
+                  Task
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/state")}>
+                  State
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/events")}>
+                  Events
+                </button>
+              </li>
+              <li className="hooks-title">Hooks</li>
+              <li>
+                <button onClick={() => navigate("/learningReact/hooks/usestate")}>
+                  useState
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/hooks/useeffect")}>
+                  useEffect
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/hooks/useeffectapi")}>
+                  useEffectAPI
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/hooks/fakeimageapi")}>
+                  FakeImageAPI
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/hooks/useref")}>
+                  useRef
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/hooks/usememo")}>
+                  useMemo
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/learningReact/hooks/usecallback")}>
+                  useCallback
+                </button>
+              </li>
+            </ul>
+          )}
+        </li>
+
+        <li><button onClick={() => navigate("/login")}>Login</button></li>
+      </ul>
+    </nav>
   );
 }
 
