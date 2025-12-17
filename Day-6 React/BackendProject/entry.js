@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors())
 
 mdb
-  .connect("mongodb://localhost:27017/SECE")
+  .connect("mongodb+srv://cys:cys@cluster0.vsb5beg.mongodb.net//SECE")
   .then(() => console.log("MongoDB Connection Successful"))
   .catch((err) => console.log("MongoDB Connection Unsuccessful", err));
 
