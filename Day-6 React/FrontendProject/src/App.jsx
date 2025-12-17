@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/functionalComponents/Navbar";
 import Home from "./components/functionalComponents/Home";
 import About from "./components/functionalComponents/About";
@@ -17,42 +17,136 @@ import UseRef from "./components/functionalComponents/Hooks/UseRef";
 import UseMemo from "./components/functionalComponents/Hooks/UseMemo";
 import UseCallback from "./components/functionalComponents/Hooks/UseCallback";
 
+/* 🔐 Route Protection */
+const PrivateRoute = ({ children }) => {
+  const isLogin = localStorage.getItem("isLogin");
+  return isLogin ? children : <Navigate to="/login" />;
+};
+
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        {/* Public Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
+        {/* Protected Routes */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PrivateRoute>
+              <About />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PrivateRoute>
+              <Contact />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Learning React (ALL PROTECTED) */}
         <Route
           path="/learningReact/props"
           element={
-            <Props hi="Welcome Props" grade="12" age="18" img="/vite.svg" />
+            <PrivateRoute>
+              <Props hi="Welcome Props" grade="12" age="18" img="/vite.svg" />
+            </PrivateRoute>
           }
         />
-        <Route path="/learningReact/task" element={<Task />} />
-        <Route path="/learningReact/state" element={<State />} />
-        <Route path="/learningReact/events" element={<Events />} />
-        <Route path="/learningReact/hooks/usestate" element={<UseState />} />
-        <Route path="/learningReact/hooks/useeffect" element={<UseEffect />} />
+        <Route
+          path="/learningReact/task"
+          element={
+            <PrivateRoute>
+              <Task />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/learningReact/state"
+          element={
+            <PrivateRoute>
+              <State />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/learningReact/events"
+          element={
+            <PrivateRoute>
+              <Events />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/learningReact/hooks/usestate"
+          element={
+            <PrivateRoute>
+              <UseState />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/learningReact/hooks/useeffect"
+          element={
+            <PrivateRoute>
+              <UseEffect />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/learningReact/hooks/useeffectapi"
-          element={<UseEffectAPI />}
+          element={
+            <PrivateRoute>
+              <UseEffectAPI />
+            </PrivateRoute>
+          }
         />
         <Route
           path="/learningReact/hooks/fakeimageapi"
-          element={<FakeImageAPI />}
+          element={
+            <PrivateRoute>
+              <FakeImageAPI />
+            </PrivateRoute>
+          }
         />
-        <Route path="/learningReact/hooks/useref" element={<UseRef />} />
-        <Route path="/learningReact/hooks/usememo" element={<UseMemo />} />
+        <Route
+          path="/learningReact/hooks/useref"
+          element={
+            <PrivateRoute>
+              <UseRef />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/learningReact/hooks/usememo"
+          element={
+            <PrivateRoute>
+              <UseMemo />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/learningReact/hooks/usecallback"
-          element={<UseCallback />}
+          element={
+            <PrivateRoute>
+              <UseCallback />
+            </PrivateRoute>
+          }
         />
       </Routes>
     </BrowserRouter>

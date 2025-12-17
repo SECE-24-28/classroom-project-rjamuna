@@ -1,58 +1,79 @@
-
 import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  // If already logged in, redirect to home
+  useEffect(() => {
+    if (localStorage.getItem("isLogin") === "true") {
+      navigate("/");
+    }
+  }, [navigate]);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      const req = await axios.post("http://localhost:8001/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://classroom-project-rjamuna.onrender.com/login",
+        { email, password }
+      );
 
-      const { message, isLoggedIn } = req.data;
+      const { message, isLoggedIn } = response.data;
 
       if (isLoggedIn) {
-        localStorage.setItem("isLogin", "true");
-        alert(message);
-        navigate("/");
+        localStorage.setItem("isLogin", "true"); // mark as logged in
+        alert(message || "Login Successful");
+        navigate("/"); // redirect to home
+      } else {
+        alert(message || "Login Failed");
       }
-    } catch (e) {
-      alert("Login Failed",e);
+    } catch (error) {
+      alert(error.response?.data?.message || "Login Failed");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div>
+    <div style={{ padding: "2rem" }}>
       <h2>Login Page</h2>
-
       <form onSubmit={handleLogin}>
         <div>
           <label>Email:</label>
-          <input type="email" onChange={(e) => setEmail(e.target.value)} required />
+          <input
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
 
         <br />
 
         <div>
           <label>Password:</label>
-          <input type="password" onChange={(e) => setPassword(e.target.value)} required />
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
         </div>
 
         <br />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
       </form>
 
       <p>
-        Create an account? <Link to="/signup">Signup</Link>
+        Don't have an account? <Link to="/signup">Signup</Link>
       </p>
     </div>
   );
