@@ -24,6 +24,19 @@ app.get("/", (req, res) => {
   res.send("Server started successfully");
 });
 
+app.get("/", (req, res) => {
+  res.send("Server started successfully");
+});
+
+// ✅ ADD THIS ROUTE
+app.get("/json", (req, res) => {
+  res.json({
+    College: "SECE",
+    Dept: "CYS",
+    StuCount: 64,
+  });
+});
+
 // ✅ SIGNUP
 app.post("/signup", async (req, res) => {
   try {
